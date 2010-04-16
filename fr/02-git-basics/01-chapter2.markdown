@@ -1,28 +1,28 @@
 # Les bases de Git #
 
 Si vous ne devez lire qu'un chapitre avant de commencer à utiliser Git, c'est celui-ci.
-Ce chapitre couvre les commandes de base nécessaires pour réaliser la vaste majorité des activités avec Git.
-A la fin de ce chapitre, vous devriez être capable de configurer et initialiser un dépôt, commencer et stopper le suivi de version de fichiers, d'indexer et commiter des modifications.
-Nous vous montrerons aussi comment paramétrer Git pour qu'il ignore certains fichiers ou patrons de fichiers, comment revenir sur les erreurs rapidement et facilement, comment parcourir l'historique de votre projet et voir les modifications entre deux commits, et comment pousser et tirer les modifications avec des dépôts distants.
+Ce chapitre couvre les commandes de base nécessaires pour réaliser la grande majorité des activités avec Git.
+À la fin de ce chapitre, vous devriez être capable de configurer et initialiser un dépôt, commencer et stopper le suivi de version de fichiers, d'indexer et commiter des modifications.
+Nous vous montrerons aussi comment paramétrer Git pour qu'il ignore certains fichiers ou groupe de fichiers, comment revenir sur les erreurs rapidement et facilement, comment parcourir l'historique de votre projet et voir les modifications entre deux commits, et comment pousser et tirer les modifications avec des dépôts distants.
 
 ## Démarrer un dépôt Git ##
 
-Vous pouvez principalement démarrer un dépôt Git de deux manière.
+Vous pouvez principalement démarrer un dépôt Git de deux manières.
 La première consiste à prendre un projet ou un répertoire existant et à l'importer dans Git.
 La seconde consiste à cloner un dépôt Git existant sur un autre serveur.
 
 ### Initialisation d'un dépôt Git dans un répertoire existant ###
 
-Si vous commencer à suivre en version un projet existant dans Git, vous n'avez qu'à vous positionner dans le répertoire du projet et saisir
+Si vous commencez à suivre en version un projet existant dans Git, vous n'avez qu'à vous positionner dans le répertoire du projet et saisir
 
 	$ git init
 
-Cela crée un nouveau sous-répertoire nommé `.git` qui contient tous vos fichiers d'archive — un squelette de dépôt Git.
+Cela crée un nouveau sous-répertoire nommé `.git` qui contient tous les fichiers nécessaire au dépôt — un squelette de dépôt Git.
 À ce point, rien n'est encore suivi en version.
 (Cf. chapitre 9 pour plus d'information sur les fichiers contenus dans le répertoire `.git` que vous venez de créer.)
 
-Si vous souhaitez commencer à suivre en version des fichiers existant ( contrairement à un répertoire vide), vous devriez probablement commencer par indexer ces fichiers et faire un commit initial.
-Vous pouvez réaliser ceci avec un poignée de commandes Git qui spécifient les fichiers que vous souhaitez suivre, suivi d'un commit :
+Si vous souhaitez commencer à suivre en version des fichiers existants ( contrairement à un répertoire vide), vous devriez probablement commencer par indexer ces fichiers et faire un commit initial.
+Vous pouvez réaliser ceci avec une poignée de commandes Git qui spécifient les fichiers que vous souhaitez suivre, suivi d'un commit :
 
 	$ git add *.c
 	$ git add README
@@ -35,9 +35,9 @@ Pour l'instant, vous avez un dépôt git avec des fichiers en suivi et un commit
 
 Si vous souhaitez obtenir une copie d'un dépôt Git existant — par exemple, un projet auquel vous aimeriez contribuer — la commande dont vous avez besoin s'appelle `git clone`.
 Si vous êtes familier avec d'autres systèmes de gestion de version tels que Subversion, vous noterez que la commande est 'clone' et non 'checkout'.
-C'est une distinction importante — Git reçoit une copie de quasiment toutes les données dont le serveur dispose.
+C'est une différence importante — Git reçoit une copie de quasiment toutes les données dont le serveur dispose.
 Toutes les versions de tous les fichiers pour l'historique du projet sont téléchargées quand vous lancez `git clone`.
-En fait, si le disque du serveur se corrompt, vous pouvez utiliser n'importe quel clone pour remonter le serveur dans l'état où il était au moment du clonage (vous pourriez perdre quelques paramètres du serveur, mais toutes les données en gestion de version serait récupérées — Cf.
+En fait, si le disque du serveur se corrompt, vous pouvez utiliser n'importe quel clone pour remonter le serveur dans l'état où il était au moment du clonage (vous pourriez perdre quelques paramètres du serveur, mais toutes les données sous gestion de version serait récupérées — Cf.
 chapitre 4 pour de plus amples détails).
 
 Vous clonez un dépôt avec `git clone [url]`.
@@ -45,17 +45,17 @@ Par exemple, si vous voulez cloner la bibliothèque Git Ruby appelée Grit, vous
 
 	$ git clone git://github.com/schacon/grit.git
 
-Ceci crée un répertoire nommé "grit", initialise un répertoire `.git` à l'intérieur, récupère toutes les données pour ce dépôt, et extrait une copie de travail de la dernière version.
+Ceci crée un répertoire nommé "grit", y initialise un répertoire `.git`, récupère toutes les données pour ce dépôt, et extrait une copie de travail de la dernière version.
 Si vous examinez le nouveau répertoire `grit`, vous y verrez les fichiers du projet, prêt à être modifiés ou utilisés.
 Si vous souhaitez cloner le dépôt dans un répertoire nommé différemment, vous pouvez spécifier le nom en option supplémentaire à la ligne de commande :
 
 	$ git clone git://github.com/schacon/grit.git mygrit
 
-Cette commande réalise la même chose que la précédent, mais le répertoire cible s'appelle mygrit.
+Cette commande réalise la même chose que la précédente, mais le répertoire cible s'appelle mygrit.
 
 Git dispose de différents protocoles de transfert que vous pouvez utiliser.
 L'exemple précédent utilise le protocole `git://`, mais vous pouvez aussi voir `http(s)://` ou `utilisateur@serveur:/chemin.git`, qui utilise le protocole de transfert SSH.
-Le chapitre 4 introduit toutes les options disponibles pour mettre en place un serveur Git et leurs avantages et inconvénients.
+Le chapitre 4 introduit toutes les options disponibles pour mettre en place un serveur Git avec leurs avantages et inconvénients.
 
 ## Enregistrer des modifications dans le dépôt ##
 
@@ -68,7 +68,7 @@ Tous les autres fichiers sont non suivis — tout fichier de votre copie de tra
 Quand vous clonez un dépôt pour la première fois, tous les fichiers seront suivis en version et inchangés car vous venez tout juste de les enregistrer sans les avoir encore édités.
 
 Au fur et à mesure que vous éditez des fichiers, Git les considère comme modifiés, car vous les avez modifiés depuis le dernier instantané.
-Vous indexés ces fichiers modifiés et vous enregistrez toutes les modifications indexées, puis ce cycle se répète.
+Vous indexez ces fichiers modifiés et vous enregistrez toutes les modifications indexées, puis ce cycle se répète.
 Ce cycle de vie est illustré par la figure 2-1.
 
 Insert 18333fig0201.png 
@@ -90,7 +90,7 @@ Pour l'instant, c'est toujours master, qui correspond à la valeur par défaut 
 Dans le chapitre suivant, nous parlerons plus en détail des branches et des références.
 
 Supposons que vous ajoutiez un nouveau fichier à votre projet, un simple fichier LISEZMOI.
-Si ce fichier n'existait pas auparavant, et vous lancez la commande `git status`, vous verrez votre fichier non suivi comme ceci :
+Si ce fichier n'existait pas auparavant, et que vous lancez la commande `git status`, vous verrez votre fichier non suivi comme ceci :
 
 	$ vim LISEZMOI
 	$ git status
@@ -108,12 +108,12 @@ Mais vous voulez inclure le fichier LISEZMOI dans l'instantané, alors commenço
 
 ### Suivre des nouveaux fichiers en version ###
 
-Pour commencer à suivre un nouveau fichier, vous utilisez la commande `git add`.
+Pour commencer à suivre un nouveau fichier, utilisez la commande `git add`.
 Pour commencer à suivre le fichier LISEZMOI, vous pouvez entrer ceci :
 
 	$ git add LISEZMOI
 
-Si vous lancez à nouveau le commande status, vous pouvez constater que votre fichier LISEZMOI est maintenant suivi et indexé :
+Si vous lancez à nouveau la commande status, vous pouvez constater que votre fichier LISEZMOI est maintenant suivi et indexé :
 
 	$ git status
 	# On branch master
