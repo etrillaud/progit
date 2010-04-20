@@ -205,20 +205,20 @@ Voici ci-dessous un exemple de fichier .gitignore :
 	*.[oa]
 	*~
 
-La première ligne ordonne à Git d'ignorer tout fichier se terminant en .o ou .a — des fichiers objet ou archive qui sont généralement produits par la compilation d'un programme.
+La première ligne ordonne à Git d'ignorer tout fichier se terminant en .o ou .a — des fichiers objet ou archive qui sont généralement produits pendant la compilation d'un programme.
 La seconde ligne indique à Git d'ignorer tous les fichiers se terminant par un tilde (`~`), ce qui est le cas des noms des fichiers temporaires pour de nombreux éditeurs de texte tels qu'Emacs.
 On peut aussi inclure un répertoire log, tmp ou pid, ou le répertoire de documentation générée automatiquement, ou tout autre fichier.
 Renseigner un fichier .gitignore avant de commencer à travailler est généralement une bonne idée qui évitera de valider par inadvertance des fichiers qui ne doivent pas apparaître dans le dépôt Git.
 
 Les règles de construction des patrons à placer dans le fichier .gitignore sont les suivantes :
 
-* Les lignes vides ou commençant par # sont ignorée
+* Les lignes vides ou commençant par # sont ignorées
 * Les patrons standards de fichiers sont utilisables
 * Si le patron se termine par un slash (`/`), le patron dénote un répertoire
 * Un patron commençant par un point d'exclamation (`!`) est inversé.
 
 Les patrons standards de fichiers sont des expressions régulières simplifiées utilisées par les shells.
-Un astérisque (`*`) correspond à un ou plusieurs caractères ; `[abc]` correspond à un des trois caractères listés dans les crochets, donc a ou b ou c ; un point d'interrogation (`?`) correspond à un unique caractère ; des crochets entourant des caractères séparés par un signe moins (`[0-9]`) correspond à un caractère dans l'intervalle des deux caractères indiqués, donc ici de 0 à 9.
+Un astérisque (`*`) correspond à un ou plusieurs caractères. `[abc]` correspond à un des trois caractères listés dans les crochets, donc a ou b ou c. Un point d'interrogation (`?`) correspond à un unique caractère. Des crochets entourants des caractères séparés par un signe moins (`[0-9]`) correspondent à un caractère dans l'intervalle compris entre les deux caractères indiqués, ici de 0 à 9.
 
 Voici un autre exemple de fichier .gitignore :
 
@@ -226,13 +226,13 @@ Voici un autre exemple de fichier .gitignore :
 	*.a       # pas de fichier .a
 	!lib.a    # mais suivre en version lib.a malgré la règle précédente
 	/TODO     # ignorer uniquement le fichier TODO à la racine du projet
-	build/    # ignorer tous le fichiers dans le répertoire build
+	build/    # ignorer tous les fichiers dans le répertoire build
 	doc/*.txt # ignorer doc/notes.txt, mais pas doc/server/arch.txt
 
 ### Inspecter les modifications indexées et non indexées ###
 
 Si le résultat de la commande `git status` est encore trop vague — lorsqu'on désire savoir non seulement quels fichiers ont changé mais aussi ce qui a changé dans ces fichiers — on peut utiliser la commande `git diff`.
-Cette commande sera traitée en détail plus loin ; mais elle sera vraisemblablement utilisée le plus souvent pour répondre aux questions suivantes : qu'est-ce qui a été modifié mais pas encore indexé ? Quelle modifications a été indexée et est prête pour la validation ? Là où `git status` répond de manière générale à ces questions, `git diff` montre les lignes exactes qui ont été ajoutées, modifiées ou effacées — le patch en somme.
+Cette commande sera traitée en détail plus loin, mais elle sera vraisemblablement utilisée le plus souvent pour répondre aux questions suivantes : qu'est-ce qui a été modifié mais pas encore indexé ? Quelle modifications a été indexée et est prête pour la validation ? Là où `git status` répond de manière générale à ces questions, `git diff` montre les lignes exactes qui ont été ajoutées, modifiées ou effacées — le patch en somme.
 
 Supposons que vous éditez et indexez le fichier LISEZMOI et que vous éditez le fichier benchmarks.rb sans l'indexer.
 Si vous lancez la commande `status`, vous verrez ceci :
