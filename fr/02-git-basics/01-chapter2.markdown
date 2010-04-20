@@ -129,7 +129,7 @@ La commande git add accepte en paramètre un chemin qui correspond à un fichier
 
 ### Indexer des fichiers modifiés ###
 
-Maintenant, modifions un fichiers qui a déjà été suivi en version.
+Maintenant, modifions un fichier qui est déjà sous suivi en version.
 Si vous modifiez le fichier suivi en version appelé `benchmarks.rb` et lancez à nouveau votre commande `status`, vous verrez ceci :
 
 	$ git status
