@@ -45,7 +45,7 @@ Par exemple, si vous voulez cloner la bibliothèque Git Ruby appelée Grit, vous
 
 	$ git clone git://github.com/schacon/grit.git
 
-Ceci crée un répertoire nommé "grit", y initialise un répertoire `.git`, récupère toutes les données pour ce dépôt, et extrait une copie de travail de la dernière version.
+Ceci crée un répertoire nommé "grit", y initialise un répertoire `.git`, récupère toutes les données pour ce dépôt et extrait une copie de travail de la dernière version.
 Si vous examinez le nouveau répertoire `grit`, vous y verrez les fichiers du projet, prêt à être modifiés ou utilisés.
 Si vous souhaitez cloner le dépôt dans un répertoire nommé différemment, vous pouvez spécifier le nom en option supplémentaire à la ligne de commande :
 
@@ -90,7 +90,7 @@ Pour l'instant, c'est toujours master, qui correspond à la valeur par défaut 
 Dans le chapitre suivant, nous parlerons plus en détail des branches et des références.
 
 Supposons que vous ajoutiez un nouveau fichier à votre projet, un simple fichier LISEZMOI.
-Si ce fichier n'existait pas auparavant, et que vous lancez la commande `git status`, vous verrez votre fichier non suivi comme ceci :
+Si ce fichier n'existait pas auparavant et que vous lancez la commande `git status`, vous verrez votre fichier non suivi comme ceci :
 
 	$ vim LISEZMOI
 	$ git status
@@ -145,9 +145,9 @@ Si vous modifiez le fichier suivi en version appelé `benchmarks.rb` et lancez �
 	#	modified:   benchmarks.rb
 	#
 
-Le fichier benchmarks.rb apparaît sous la section nommée « Changed but not updated » ce qui signifie que le fichier suivi en version a été modifié dans la copie de travail mais n'est pas encore indexé.
+Le fichier benchmarks.rb apparaît dans la section nommée « Changed but not updated » ce qui signifie que le fichier suivi en version a été modifié dans la copie de travail mais n'est pas encore indexé.
 Pour l'indexer, il faut lancer la commande `git add` (qui est une commande multi-usage — elle peut être utilisée pour commencer à suivre en version un fichier, pour indexer un fichier ou pour d'autres actions telles que marquer comme résolu des conflits de fusion de fichiers).
-Lançons maintenant `git add` pour indexer le fichier benchmarks.rb, et relançons la commande `git status` :
+Lançons maintenant `git add` pour indexer le fichier benchmarks.rb et relançons la commande `git status` :
 
 	$ git add benchmarks.rb
 	$ git status
@@ -181,7 +181,7 @@ Néanmoins, vous lancez `git status` une dernière fois :
 
 Que s'est-il donc passé ? À présent, benchmarks.rb apparaît à la fois comme indexé et non indexé.
 En fait, Git indexe un fichier dans son état au moment où la commande `git add` est lancée.
-Si on valide les modifications maintenant, la version de benchmarks.rb qui fera partie de l'instantané est celle correspondant au moment où la commande `git add benchmarks.rb` a été lancée, et non la version actuellement présente dans la copie de travail au moment où la commande git commit est lancée.
+Si on valide les modifications maintenant, la version de benchmarks.rb qui fera partie de l'instantané est celle correspondant au moment où la commande `git add benchmarks.rb` a été lancée et non la version actuellement présente dans la copie de travail au moment où la commande git commit est lancée.
 Si le fichier est modifié après un `git add`, il faut relancer `git add` pour prendre en compte l'état actuel dans la copie de travail :
 
 	$ git add benchmarks.rb
@@ -380,7 +380,7 @@ D'une autre manière, vous pouvez spécifier votre message de validation en lign
 	 2 files changed, 3 insertions(+), 0 deletions(-)
 	 create mode 100644 LISEZMOI
 
-A présent, vous avez créé votre premier commit ! Vous pouvez constater que le commit vous fournit quelques information sur lui-même : sur quelle branche vous avez validé (master), quelle est sa somme de contrôle SHA-1 (`463dc4f`), combien de fichiers ont été modifiés, et quelques statistiques sur les lignes ajoutées et effacées dans ce commit.
+À présent, vous avez créé votre premier commit ! Vous pouvez constater que le commit vous fournit quelques information sur lui-même : sur quelle branche vous avez validé (master), quelle est sa somme de contrôle SHA-1 (`463dc4f`), combien de fichiers ont été modifiés et quelques statistiques sur les lignes ajoutées et effacées dans ce commit.
 
 Souvenez-vous que la validation enregistre l'instantané que vous avez préparé dans la zone d'index.
 Tout ce que vous n'avez pas indexé est toujours en état modifié ; vous pouvez réaliser une nouvelle validation pour l'ajouter à l'historique.
@@ -493,7 +493,7 @@ Néanmoins, cela revient à lancer les commandes suivantes :
 
 Git trouve implicitement que c'est un renommage, donc cela importe peu si vous renommez un fichier de cette manière ou avec la commande `mv`.
 La seule différence réelle est que `mv` ne fait qu'une commande à taper au lieu de trois — c'est une commande de convenance.
-Le point principal est que vous pouvez utiliser n'importe quel outil pour renommer un fichier, et traiter les commandes `add`/`rm` plus tard, avant de valider la modification.
+Le point principal est que vous pouvez utiliser n'importe quel outil pour renommer un fichier et traiter les commandes `add`/`rm` plus tard, avant de valider la modification.
 
 ## Visualiser l'historique des validations ##
 
@@ -652,7 +652,7 @@ Le tableau 2-1 liste les options de formattage les plus utiles.
 
 Vous pourriez vous demander quelle est la différence entre _auteur_  et _validateur_.
 L'auteur est la personne qui a réalisé initialement le travail, alors que le validateur est la personne qui a effectivement validé ce travail en gestion de version.
-Donc, si quelqu'un envoie patch à un projet et un des membres du projet l'applique, les deux personnes reçoivent le crédit — l'écrivain en tant qu'auteur, et le membre du projet en tant que validateur.
+Donc, si quelqu'un envoie patch à un projet et un des membres du projet l'applique, les deux personnes reçoivent le crédit — l'écrivain en tant qu'auteur et le membre du projet en tant que validateur.
 Nous traiterons plus avant de cette distinction au chapitre 5.
 
 Les options oneline et format sont encore plus utiles avec une autre option `log` appelée `--graph`.
@@ -682,7 +682,7 @@ Le tableau 2-2 donne une liste des options que nous avons traitées ainsi que d'
 	--abbrev-commit	N'affiche que les premiers caractères de la somme de contrôle SHA-1
 	--relative-date	Affiche la date en format relatif (par exemple "2 weeks ago" : il y a deux semaines) au lieu du format de date complet
 	--graph	Affiche en caractère ASCII le graphe de branches et fusions en vis-à-vis de l'historique
-	--pretty=<format>	Affiche les commits dans un format alternatif. Les formats incluent oneline, short, full, fuller, et format (où on peut spécifier son propre format)
+	--pretty=<format>	Affiche les commits dans un format alternatif. Les formats incluent oneline, short, full, fuller et format (où on peut spécifier son propre format)
 
 ### Limiter la longueur de l'historique ###
 
@@ -699,7 +699,7 @@ Par exemple, le commande suivante affiche la liste des commits des deux dernièr
 Cette commande fonctionne avec de nombreux formats — vous pouvez indiquer une date spécifique (2008-01-05) ou une date relative au présent telle que "2 years 1 day 3 minutes ago".
 
 Vous pouvez aussi restreindre la liste aux commits vérifiant certains critères de recherche.
-L'option `--author` permet de filtrer sur un auteur spécifique, et l'option `--grep` permet de chercher des mots clés dans les messages de validation.
+L'option `--author` permet de filtrer sur un auteur spécifique et l'option `--grep` permet de chercher des mots clés dans les messages de validation.
 Notez que si vous cherchez seulement des commits correspondant simultanément aux deux critères, vous devez ajouter l'option `--all-match`, car par défaut ces commandes retournent les commits vérifiant au moins un critère lors de recherche de chaînes de caractères.
 
 La dernière option vraiment utile à `git log` est la spécification d'un chemin.
@@ -731,7 +731,7 @@ A partir des 20 000 commits constituant l'historique des sources de Git, cette c
 ### Utiliser une interface graphique pour visualiser l'historique ###
 
 Si vous préférez utiliser un outil plus graphique pour visualiser l'historique d'un projet, vous pourriez jeter un œil à un programme distribué avec Git nommé gitk.
-Gitk est un outil graphique mimant les fonctionnalités de `git log`, et il donne accès à quasiment toutes les options de filtrage de `git log`.
+Gitk est un outil graphique mimant les fonctionnalités de `git log` et il donne accès à quasiment toutes les options de filtrage de `git log`.
 Si vous tapez gitk en ligne de commande, vous devriez voir une interface ressemblant à la figure 2-2.
 
 Insert 18333fig0202.png 
@@ -1241,13 +1241,13 @@ A présent, lorsqu'une autre personne clone ou tire depuis votre dépôt, elle o
 ## Trucs et astuces ##
 
 Avant de clore ce chapitre sur les bases de Git, voici quelques trucs et astuces qui peuvent rendre votre apprentissage de Git plus simple, facile ou famillier.
-De nombreuses personnes utilisent parfaitement Git sans connaître aucun de ces trucs, et nous n'y ferons pas référence, ni ne considérerons leur connaissance comme des prérequis pour la suite de ce livre, mais il est préférable de les connaître.
+De nombreuses personnes utilisent parfaitement Git sans connaître aucun de ces trucs et nous n'y ferons pas référence, ni ne considérerons leur connaissance comme des prérequis pour la suite de ce livre, mais il est préférable de les connaître.
 
 
 ### Auto-Complétion ###
 
 Si vous utilisez le shell Bash, Git est livré avec un script d'auto-complétion utile.
-Téléchargez le code source de Git, et jetez un œil dans le répertoire `contrib/completion`.
+Téléchargez le code source de Git et jetez un œil dans le répertoire `contrib/completion`.
 Il devrait y avoir un fichier nommé `git-completion.bash`.
 Copiez ce fichier dans votre répertoire personnel et ajoutez cette ligne à votre fichier `.bashrc` :
 
@@ -1267,7 +1267,7 @@ Dans ce cas, taper git co et appuyer sur la touche Tab deux fois suggère commit
 Ajouter `m<tab>` complète `git commit` automatiquement.
 
 Cela fonctionne aussi avec les options, ce qui est probablement plus utile.
-Par exemple, si vous tapez la commande `git log` et ne vous souvenez plus d'une des options, vous pouvez commencer à la taper, et appuyer sur la touche Tab pour voir ce qui peut correspondre :
+Par exemple, si vous tapez la commande `git log` et ne vous souvenez plus d'une des options, vous pouvez commencer à la taper et appuyer sur la touche Tab pour voir ce qui peut correspondre :
 
 	$ git log --s<tab>
 	--shortstat  --since=  --src-prefix=  --stat   --summary
